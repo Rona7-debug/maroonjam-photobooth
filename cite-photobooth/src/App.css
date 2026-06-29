@@ -1,0 +1,58 @@
+/* Color Palette */
+:root {
+  --dark-blue: #1a1a3e;
+  --light-gray: #C6C6C6;
+  --light-blue: #00A7E1;
+  --white: #fff;
+  --orange: #ec6a40;
+  --orange-mid: #f58e64;
+  --orange-pastel: #feb994;
+}
+
+body {
+  font-family: 'Readex Pro', sans-serif;
+  color: var(--dark-blue);
+  background-color: #FFF5F0;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app-cloud-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.cloud {
+  position: absolute;
+  width: clamp(220px, 22vw, 460px);
+  opacity: 0.9;
+  filter: drop-shadow(0 12px 22px rgba(236, 106, 64, 0.18));
+  animation: cloudMove 22s linear infinite;
+}
+
+.cloud-1 { top: 4%; left: 2%; animation-delay: -2s; }
+.cloud-2 { top: 10%; left: 55%; animation-delay: -8s; animation-duration: 18s; }
+.cloud-3 { top: 24%; left: 18%; animation-delay: -6s; animation-duration: 20s; }
+.cloud-4 { top: 36%; left: 72%; animation-delay: -12s; animation-duration: 24s; }
+.cloud-5 { bottom: 28%; left: 6%; animation-delay: -10s; animation-duration: 19s; }
+.cloud-6 { bottom: 20%; left: 62%; animation-delay: -14s; animation-duration: 21s; }
+.cloud-7 { bottom: 10%; left: 30%; animation-delay: -18s; animation-duration: 23s; }
+.cloud-8 { bottom: 4%; left: 80%; animation-delay: -20s; animation-duration: 25s; }
+
+@keyframes cloudMove {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(140px, -12px); }
+  100% { transform: translate(-120px, 0); }
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}

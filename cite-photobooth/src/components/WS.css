@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;600;700&display=swap');
+
+body {
+  overflow: hidden;
+}
+
+.welcome-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #6B0F1A 0%, #8a2233 28%, #c9697a 58%, #f3c9b8 100%);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* ===== Vine arch across the top ===== */
+.vine-arch {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ===== Hanging flower cluster (PNG) — hangs from the vine arch ===== */
+.hanging-stem {
+  position: absolute;
+  top: 32px;           /* bottom edge of the vine-arch curve at this x position */
+  left: 25%;            /* pick a point along the vine where it should hang */
+  width: 2px;
+  height: 28px;
+  background: #3F7D3A;
+  z-index: 4;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.hanging-cluster {
+  position: absolute;
+  top: 60px;            /* = .hanging-stem top + height, so the flower sits right below the string */
+  left: 25%;             /* must match .hanging-stem left */
+  transform: translateX(-50%);
+  z-index: 4;
+  animation: hang-sway 4.5s ease-in-out infinite;
+  transform-origin: top center;
+  pointer-events: none;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.18));
+}
+
+@keyframes hang-sway {
+  0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+  50% { transform: translateX(-50%) rotate(3deg); }
+}
+
+/* ===== Scattered single flowers ===== */
+.scattered-flower {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  height: auto;
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.15));
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+.scattered-flower:nth-child(odd) {
+  animation-duration: 7s;
+  animation-direction: alternate;
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-8px) rotate(var(--rot, 0deg)); }
+}
+
+/* ===== Raining leaves/petals ===== */
+.petal {
+  position: absolute;
+  top: -40px;
+  z-index: 2;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.85;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.85; }
+  100% { transform: translateY(110vh) translateX(40px) rotate(340deg); opacity: 0; }
+}
+
+/* ===== Grass strip ===== */
+.grass-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 3;
+}
+
+.planted-flower {
+  position: absolute;
+  bottom: 58px;
+  z-index: 4;
+  pointer-events: none;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* ===== Center content ===== */
+.center-stage {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 20px;
+  margin-top: -170px; 
+}
+
+.title-card {
+  background: rgba(255, 245, 247, 0.92);
+  border: 3px dashed #E8649A;
+  border-radius: 18px;
+  padding: 40px 100px 44px;
+  text-align: center;
+  min-width: 400px;
+  position: relative;
+}
+
+.title-card h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 70px; 
+  font-weight: 400;
+  color: #6B0F1A;
+  margin: 4px 0 6px;
+  line-height: 1;
+}
+
+.title-card .corner-dot {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #F5C842;
+  border: 2px solid #E8649A;
+  z-index: 2;
+}
+
+.title-card .corner-tl { top: -8px; left: -8px; }
+.title-card .corner-tr { top: -8px; right: -8px; }
+.title-card .corner-bl { bottom: -8px; left: -8px; }
+.title-card .corner-br { bottom: -8px; right: -8px; }
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: #6B0F1A;
+  margin: 0;
+}
+
+.edition-tag {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #c9469a;
+  margin: 0;
+}
+
+.start-btn {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 28px;
+  background-color: #E8649A;
+  color: #FFF5F7;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 0 #b8447a;
+}
+
+.start-btn:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #b8447a;
+}
+
+.footer-credit {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 6;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFF5F7;
+}
+
+.footer-logo {
+  height: 18px;
+  width: auto;
+}
+
+/* --- Responsive for large screens --- */
+@media screen and (min-width: 1440px) {
+  .title-card h1 { font-size: 58px; }
+  .eyebrow { font-size: 16px; }
+  .edition-tag { font-size: 15px; }
+  .start-btn { font-size: 20px; padding: 18px 52px; }
+  .hanging-cluster { width: 170px; }
+}
+
+/* --- Responsive for small screens --- */
+@media screen and (max-width: 480px) {
+  .title-card { padding: 18px 28px 22px; }
+  .title-card h1 { font-size: 36px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.25em; }
+  .hanging-cluster { width: 90px; left: 2%; top: 60px; }
+  .scattered-flower { width: 45px !important; }
+  .planted-flower { width: 45px !important; }
+}
