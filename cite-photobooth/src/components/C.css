@@ -10,7 +10,7 @@ html, body {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: linear-gradient(180deg, #6B0F1A 0%, #8a2233 28%, #c9697a 58%, #f3c9b8 100%);
+  background: linear-gradient(180deg, #cdb72b 0%, #fafa0f 28%, #e3768a 58%, #f3c9b8 100%);
   font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: column;
@@ -132,7 +132,7 @@ html, body {
 .cam-preview {
   width: 740px;
   max-width: 90vw;
-  height: 410px;
+  height: 420px;
   transform: scaleX(-1);
   border: 5px solid #E8649A;
   border-radius: 16px;
@@ -185,8 +185,8 @@ html, body {
 }
 
 .photo img {
-  width: 130px;
-  height: 95px;
+  width: 220px;
+  height: 130px;
   border: 2px solid #E8649A;
   border-radius: 12px;
   animation: instaxDrop 1.8s ease-out;

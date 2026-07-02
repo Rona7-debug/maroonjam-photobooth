@@ -115,47 +115,50 @@ function Camera() {
   };
 
   const handleCaptureClick = () => {
-    if (captureDelay > 0) {
-      setIsCapturing(true);
-      let countdown = captureDelay - 1;
-      setTimer(captureDelay);
+  if (isCapturing || photos.length >= 3) return;
+  setIsCapturing(true);
+  startCountdownForShot();
+};
 
-      const countdownInterval = setInterval(() => {
-        setTimer(countdown);
-        if (countdown <= 0) {
-          clearInterval(countdownInterval);
-          capturePhoto();
-          setTimer(0);
-          setIsCapturing(false);
-        }
-        countdown--;
-      }, 1000);
-    } else {
-      capturePhoto();
-    }
-  };
+const startCountdownForShot = () => {
+  if (captureDelay > 0) {
+    let countdown = captureDelay - 1;
+    setTimer(captureDelay);
 
-  const capturePhoto = () => {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    const video = videoRef.current;
+    const countdownInterval = setInterval(() => {
+      setTimer(countdown);
+      if (countdown <= 0) {
+        clearInterval(countdownInterval);
+        capturePhoto();
+      }
+      countdown--;
+    }, 1000);
+  } else {
+    capturePhoto();
+  }
+};
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+const capturePhoto = () => {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  const video = videoRef.current;
 
-    context.save();
-    context.translate(canvas.width, 0);
-    context.scale(-1, 1);
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    context.restore();
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
 
-    const dataURL = canvas.toDataURL('image/png');
+  context.save();
+  context.translate(canvas.width, 0);
+  context.scale(-1, 1);
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  context.restore();
 
-    setPhotos((prevPhotos) => [
-      ...prevPhotos,
-      { id: Date.now(), src: dataURL },
-    ]);
-  };
+  const dataURL = canvas.toDataURL('image/png');
+
+  setPhotos((prevPhotos) => [
+    ...prevPhotos,
+    { id: Date.now(), src: dataURL },
+  ]);
+};
 
   const handleRetake = async () => {
     const result = await Swal.fire({
@@ -193,7 +196,6 @@ function Camera() {
         throw new Error('Photo frame container not found');
       }
 
-      // FIX: scale 3 for sharp output, null bg to preserve strip gradient
       const canvas = await html2canvas(container, {
         useCORS: true,
         backgroundColor: null,
@@ -202,15 +204,14 @@ function Camera() {
         allowTaint: true,
       });
 
-      // FIX: higher jpeg quality
       const imageBlob = await canvasToBlob(canvas, 'image/jpeg', 0.95);
 
       const formData = new FormData();
       formData.append('file', imageBlob, 'photostrip.jpg');
-      formData.append('upload_preset', 'maroonjamphotobooth-preset');
+      formData.append('upload_preset', 'photobooth');
 
       const res = await axios.post(
-        'https://api.cloudinary.com/v1_1/djbdr10nl/image/upload',
+        'https://api.cloudinary.com/v1_1/dqgazjbhj/image/upload',
         formData
       );
 
@@ -240,6 +241,22 @@ function Camera() {
       setDotCount(0);
     }
   }, [isUploading]);
+
+  useEffect(() => {
+  if (!isCapturing) return;
+
+  if (photos.length === 0) return; 
+
+  if (photos.length < 3) {
+    const pause = setTimeout(() => {
+      startCountdownForShot();
+    }, 1200);
+    return () => clearTimeout(pause);
+  } else {
+    setIsCapturing(false);
+    setTimer(0);
+  }
+}, [photos]);
 
   return (
     <div className="camera-screen">

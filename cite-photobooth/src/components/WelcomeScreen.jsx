@@ -40,14 +40,14 @@ const PLANTED_FLOWERS = [
 ];
 
 const SCATTERED_FLOWERS = [
-  { src: sunflower,    top: '10%', right: '4%',  width: 130,  rotation: 15 }, // done
-  { src: mandalaSingle, top: '30%', right: '20%', width: 100, rotation: -10 }, // done
+  { src: sunflower,    top: '10%', right: '4%',  width: 130,  rotation: 15 }, 
+  { src: mandalaSingle, top: '30%', right: '20%', width: 100, rotation: -10 },
   { src: sunflower, top: '30%', left: '3%',   width: 100,  rotation: 8 },
   { src: purpleSingle,    top: '55%', right: '3%',  width: 100,  rotation: -20 },
   { src: sunflower,    top: '55%', right: '25%',  width: 100,  rotation: -20 },
   { src: mandalaSingle, top: '50%', left: '15%',  width: 90,  rotation: 12 },
   { src: purpleSingle, top: '8%',  left: '18%',  width: 90,  rotation: -5 },
-  { src: danceGirl, top: '64%', left: '45%', width: 220, rotation: 0 },
+  { src: danceGirl, top: '67%', left: '45%', width: 220, rotation: 0 },
 ];
 
 function VineArch() {
@@ -131,7 +131,7 @@ function WelcomeScreen() {
         src={hangingFlowers}
         alt=""
         aria-hidden="true"
-        width={120}
+        width={90}
       />
 
       {/* Scattered single flowers */}

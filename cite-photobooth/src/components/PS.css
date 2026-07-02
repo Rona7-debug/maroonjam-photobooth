@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@500;600;700&display=swap');
 
-/* ===== Strip container ===== */
 .frame-container {
   font-family: 'Quicksand', sans-serif;
   position: relative;
   width: 300px;
   overflow: hidden;
-  background: linear-gradient(180deg, #003A5D 0%, #00A7E1 100%);
+  background-color: #fdfaf6;
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== Single flower PNGs scattered BEHIND photos ===== */
 .bg-flower {
   position: absolute;
   height: auto;
@@ -17,14 +16,18 @@
   z-index: 1;
 }
 
-/* ===== Main content layer ===== */
 .strip-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  padding: 8px 14px 0;
+  padding: 18px 18px 0;
   box-sizing: border-box;
+}
+
+.strip-header {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .frame {
@@ -34,22 +37,26 @@
   gap: 16px;
 }
 
-/* ===== Photo slots ===== */
 .photo-slot {
   width: 100%;
-  min-height: 175px;
-  aspect-ratio: 16 / 9;
-  background-color: #ddd;
+  aspect-ratio: 16 / 9  ;
+  background-color: #ffffff;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(107, 15, 26, 0.15);
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.1);
 }
 
 .photo-slot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 2px;
 }
 
 .placeholder {
@@ -57,88 +64,91 @@
   height: 100%;
   background: repeating-linear-gradient(
     45deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.06) 10px,
-    rgba(255, 255, 255, 0.12) 10px,
-    rgba(255, 255, 255, 0.12) 20px
+    rgba(0, 0, 0, 0.03),
+    rgba(0, 0, 0, 0.03) 10px,
+    rgba(0, 0, 0, 0.06) 10px,
+    rgba(0, 0, 0, 0.06) 20px
   );
 }
 
-/* ===== Title above photos ===== */
-.strip-title-top {
-  font-family: 'Parisienne', cursive;
-  font-size: 22px;
-  font-weight: 400;
-  color: #F5C842;
-  text-align: center;
-  margin: -6px 0 6px 0;
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
-  letter-spacing: 1px;
+
+
+
+/* --- FOOTER ELEMENT --- */
+
+.strip-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 24px 0 30px;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
 }
 
-/* ===== Option A: Decorative divider ===== */
 .strip-divider {
   display: flex;
   align-items: center;
+  width: 85%;
   gap: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 0; 
 }
 
 .strip-divider-line {
   flex: 1;
   height: 1px;
-  background-color: #F5C842;
-  opacity: 0.6;
+  background-color: #6B0F1A;
+  opacity: 0.3;
 }
 
 .strip-divider-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #F5C842;
+  background-color: #6B0F1A;
+  opacity: 0.6;
   flex-shrink: 0;
 }
 
-/* ===== Footer ===== */
-.strip-footer {
+.strip-text-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 0 18px;
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .strip-title-bottom {
   font-family: 'Parisienne', cursive;
-  font-size: 22px;
-  font-weight: 400;
-  color: #F5C842;
-  text-align: center;
-  margin: 0;
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
-  letter-spacing: 1px;
+  font-size: 34px;
+  font-weight: bold;
+  color: #6B0F1A;
+  margin: 0 auto 4px auto;
+  padding: 0;
+  line-height: 1.2;
+  display: block;
 }
 
-.strip-subtitle {
+.strip-date {
   font-family: 'Quicksand', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #333333;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin: 0;
+  margin: 0 0 4px 0; 
+  display: block;
+  opacity: 0.8;
 }
 
 .strip-logo-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 2px;
+  gap: 12px;
+  margin-top: 15px; 
 }
 
 .strip-logo.swu {
@@ -148,7 +158,7 @@
 
 .strip-logo.itsc {
   border-radius: 50%;
-  background: #ffffff;
-  padding: 3px;
+  background: transparent;
+  padding: 0;
   flex-shrink: 0;
 }

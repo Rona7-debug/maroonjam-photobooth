@@ -92,10 +92,6 @@ function Result() {
           <QRCode value={imageUrl} size={220} className="qr-frame" />
 
           <div className="mt-6 flex flex-col items-center gap-3">
-            <div className="brand-row">
-              <p className="brand-text">Maroon Jam 2026</p>
-              <img src={itscLogo} width={22} height={22} alt="ITSC" className="result-logo" />
-            </div>
             <button className="home-btn" onClick={() => navigate('/')}>
               <span className="btn-content">
                 <span className="material-symbols-rounded">home</span>

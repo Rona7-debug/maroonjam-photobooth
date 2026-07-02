@@ -27,19 +27,46 @@ const DUMMY_PHOTOS = [
 
 function StripPreview() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: '#1a1a1a',
-      padding: '40px',
-    }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-        <p style={{ color: '#aaa', fontFamily: 'Quicksand, sans-serif', fontSize: '13px', margin: 0 }}>
-          📸 Strip Preview — go to <strong style={{ color: '#fff' }}>/strip-preview</strong> to see this
-        </p>
-        <PhotoStrip photos={DUMMY_PHOTOS} />
+    <div className="App" style={{ width: '100vw', minHeight: '100vh', overflowX: 'hidden' }}>
+      {/* Reconstructed Application Cloud Background */}
+      <div className="app-cloud-layer" aria-hidden="true">
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-1" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-2" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-3" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-4" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-5" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-6" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-7" />
+        <img src="/awscc/cloud.png" alt="" className="cloud cloud-8" />
+      </div>
+
+      <div style={{
+        position: 'relative',
+        minHeight: '100vh',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '60px 20px',
+        boxSizing: 'border-box',
+        zIndex: 10
+      }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+          <p style={{ 
+            color: '#6B0F1A', 
+            fontFamily: 'Quicksand, sans-serif', 
+            fontSize: '14px', 
+            fontWeight: '600',
+            margin: 0,
+            background: 'rgba(255, 255, 255, 0.8)',
+            padding: '6px 14px',
+            borderRadius: '20px',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.05)'
+          }}>
+            📸 Strip Preview Workspace
+          </p>
+          <PhotoStrip photos={DUMMY_PHOTOS} />
+        </div>
       </div>
     </div>
   );

@@ -17,15 +17,13 @@ const BG_FLOWERS = [
   { src: '/flowers/pink-flower.png',     top: '60%', right: '4%',  width: 52, rotation: -10, opacity: 0.60 },
   { src: '/flowers/lavender-flower.png', top: '68%', left: '3%',   width: 44, rotation: 22,  opacity: 0.60 },
   { src: '/flowers/orange-flower.png',   top: '75%', right: '5%',  width: 48, rotation: -5,  opacity: 0.60 },
-  { src: '/flowers/pinkish-flower.png',  top: '83%', left: '5%',   width: 42, rotation: 30,  opacity: 0.60 },
+  { src: '/flowers/pink-flower.png',  top: '83%', left: '5%',   width: 42, rotation: 30,  opacity: 0.60 },
   { src: '/flowers/blue-flower.png',     top: '88%', right: '3%',  width: 46, rotation: -18, opacity: 0.60 },
 ];
 
 function PhotoStrip({ photos }) {
   return (
     <div className="frame-container">
-
-      {/* ── Single flowers scattered BEHIND photos ── */}
       {BG_FLOWERS.map((f, i) => (
         <img
           key={i}
@@ -44,40 +42,40 @@ function PhotoStrip({ photos }) {
         />
       ))}
 
-      {/* ── Photos + footer sit above the flowers ── */}
       <div className="strip-content">
+      <div className="strip-header">
+        <div className="strip-date">Panagbenga Festival</div>
+      </div>
 
-        {/* Title above first photo */}
-        <p className="strip-title-top">Maroon Jam 2026</p>
+      <div className="frame">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div key={index} className="photo-slot">
+            {photos[index] ? (
+              <img src={photos[index].src} alt={`Photo ${index + 1}`} />
+            ) : (
+              <div className="placeholder" />
+            )}
+          </div>
+        ))}
+      </div>
 
-        {/* Option A: Decorative divider */}
+      <div className="strip-footer">
         <div className="strip-divider">
           <span className="strip-divider-line" />
           <span className="strip-divider-dot" />
           <span className="strip-divider-line" />
         </div>
 
-        <div className="frame">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="photo-slot">
-              {photos[index] ? (
-                <img src={photos[index].src} alt={`Photo ${index + 1}`} />
-              ) : (
-                <div className="placeholder" />
-              )}
-            </div>
-          ))}
+        <div className="strip-text-group">
+          <div className="strip-title-bottom">Maroon Jam 2026</div>
         </div>
 
-        {/* Logos footer */}
-        <div className="strip-footer">
-          <div className="strip-logo-row">
-            <img src={swuLogo}  width={28} height={28} alt="SWU"  className="strip-logo swu"  />
-            <img src={itscLogo} width={28} height={28} alt="ITSC" className="strip-logo itsc" />
-          </div>
+        <div className="strip-logo-row">
+          <img src={swuLogo}  width={28} height={28} alt="SWU"  className="strip-logo swu"  />
+          <img src={itscLogo} width={28} height={28} alt="ITSC" className="strip-logo itsc" />
         </div>
       </div>
-
+    </div>
     </div>
   );
 }
