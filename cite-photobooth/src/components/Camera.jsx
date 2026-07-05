@@ -208,10 +208,10 @@ const capturePhoto = () => {
 
       const formData = new FormData();
       formData.append('file', imageBlob, 'photostrip.jpg');
-      formData.append('upload_preset', 'photobooth');
+      formData.append('upload_preset', 'maroonjamphotobooth-preset');
 
       const res = await axios.post(
-        'https://api.cloudinary.com/v1_1/dqgazjbhj/image/upload',
+        'https://api.cloudinary.com/v1_1/djbdr10nl/image/upload',
         formData
       );
 
